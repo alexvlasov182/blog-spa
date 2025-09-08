@@ -1,0 +1,79 @@
+@import 'tailwindcss';
+
+/* Light theme variables */
+:root {
+  --background: #ffffff;
+  --foreground: #0f172a;
+  --card: #f8fafc;
+  --card-foreground: #0f172a;
+  --primary: #3b82f6;
+  --primary-foreground: #ffffff;
+  --muted-foreground: #64748b;
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+  --accent: #f1f5f9;
+  --accent-foreground: #0f172a;
+  --secondary: #f1f5f9;
+  --secondary-foreground: #0f172a;
+  --ring: #3b82f6;
+  --input: #e2e8f0;
+  --destructive: 0 84% 60%; /* H, S%, L% */
+  --primary: 221 83% 53%;
+  --success: 142 76% 36%;
+}
+
+/* Dark theme variables */
+.dark {
+  --background: #0f172a;
+  --foreground: #f8fafc;
+  --card: #1e293b;
+  --card-foreground: #f8fafc;
+  --primary: #60a5fa;
+  --primary-foreground: #0f172a;
+  --muted-foreground: #94a3b8;
+  --destructive: #f87171;
+  --destructive-foreground: #0f172a;
+  --accent: #334155;
+  --accent-foreground: #f8fafc;
+  --secondary: #334155;
+  --secondary-foreground: #f8fafc;
+  --ring: #60a5fa;
+  --input: #334155;
+}
+
+.bg-destructive {
+  background-color: hsl(var(--destructive));
+}
+.text-destructive-foreground {
+  color: hsl(var(--destructive-foreground));
+}
+.bg-primary {
+  background-color: hsl(var(--primary));
+}
+.text-primary-foreground {
+  color: hsl(var(--primary-foreground));
+}
+.bg-success {
+  background-color: hsl(var(--success));
+}
+.text-success-foreground {
+  color: hsl(var(--success-foreground));
+}
+
+body {
+  @apply font-sans transition-colors duration-300 antialiased;
+  background-color: var(--background);
+  color: var(--foreground);
+}
+
+a {
+  color: var(--primary);
+}
+
+h1 {
+  @apply text-3xl font-bold mb-4;
+}
+
+:focus-visible {
+  outline-offset: 2px;
+}
