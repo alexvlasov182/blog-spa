@@ -1,69 +1,65 @@
-# React + TypeScript + Vite
+# Blog SPA — React Project
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![Blog SPA Banner](./banner.png)
 
-Currently, two official plugins are available:
+A modern Single Page Application (SPA) built with **React**, **React Router v6**, **Tailwind CSS**, and **Clean Architecture** principles. This project includes **protected routes**, **lazy loading**, **unit and E2E tests**, and is fully **Dockerized** for easy deployment.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## 🧩 Features
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- Responsive, clean UI built with **Tailwind CSS**
+- Routing with **React Router v6**:
+  - Nested routes `/blog/:id`
+  - Protected route `/admin`
+  - 404 page
+- Authentication using **AuthContext** and `useAuth` hook
+- Data fetching with custom hooks `useFetchPosts` and `useFetchPost`
+- **Unit tests** using React Testing Library & Jest
+- **E2E tests** using Playwright
+- Fully **Dockerized** for local development and deployment
+- Lazy loading pages with `React.lazy` and `Suspense`
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+## 📁 Project Structure
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+/src
+/components # Reusable components (PostCard, Navbar, Button)
+/pages # SPA pages (Home, BlogList, BlogDetail, Admin, Login, NotFound)
+/hooks # Custom hooks (useAuth, useFetchPosts, useFetchPost)
+/context # AuthContext provider
+/services # Mock API services
+/routes # Routing components (AppRoutes, RequireAuth)
+/tests # Unit & E2E tests
+App.tsx # Main app component
+index.tsx # Entry point
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 🛠 Tech Stack
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- React 18
+- React Router v6
+- Tailwind CSS
+- Jest + React Testing Library
+- Playwright
+- Docker
+- TypeScript
+
+## 📝 Features in Details
+
+- BlogList: Responsive grid, cards with hover effects, loading spinner
+- BlogDetail: Centered content, back to blog link, loading animation
+- Admin: Protected route, styled like dashboard with cards
+- Login: Auth flow with redirect, professional UI
+- Lazy loading pages for faster performance
+
+## 👨‍💻 How to Use This Project for Interview
+
+- Show clean architecture and separation of concerns
+- Explain routing, protected routes, and lazy loading
+- Demonstrate hooks (useAuth, useFetchPosts)
+- Show unit tests and E2E tests
+- Mention Docker deployment
+- Highlight professional UI with Tailwind
