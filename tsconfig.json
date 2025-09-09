@@ -13,6 +13,7 @@
     "baseUrl": "./src",
     "allowJs": true,
     "esModuleInterop": true,
+    "types": ["jest", "node"],
     "paths": {
       "@/*": ["*"]
     }

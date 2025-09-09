@@ -1,7 +1,5 @@
 # Blog SPA — React Project
 
-![Blog SPA Banner](./banner.png)
-
 A modern Single Page Application (SPA) built with **React**, **React Router v6**, **Tailwind CSS**, and **Clean Architecture** principles. This project includes **protected routes**, **lazy loading**, **unit and E2E tests**, and is fully **Dockerized** for easy deployment.
 
 ---

@@ -6,6 +6,7 @@ import { Admin } from '../pages/Admin'
 import { Login } from '../pages/Login'
 import { NotFound } from '../pages/NotFound'
 import { RequireAuth } from './RequireAuth'
+import { EditPost } from '../pages/EditPost'
 
 export const AppRoutes = () => {
   return (
@@ -13,6 +14,7 @@ export const AppRoutes = () => {
       <Route path="/" element={<Home />} />
       <Route path="/blog" element={<BlogList />} />
       <Route path="/blog/:id" element={<BlogDetail />} />
+      <Route path="/blog/edit/:id" element={<EditPost />} />
       <Route path="/login" element={<Login />} />
       <Route
         path="/admin"

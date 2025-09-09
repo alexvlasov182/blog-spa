@@ -13,13 +13,20 @@ export const Navbar = () => {
         <Link to="/blog">Blog</Link>
         {user && <Link to="/admin">Admin</Link>}
       </div>
+
       <div>
         {user ? (
-          <button onClick={logout} className="bg-red-500 px-3 py-1 rounded">
+          <button
+            onClick={logout}
+            className="bg-red-500 px-3 py-1 rounded cursor-pointer"
+          >
             Logout
           </button>
         ) : (
-          <Link to="/login" className="bg-green-500 px-3 py-1 rounded">
+          <Link
+            to="/login"
+            className="bg-green-500 px-3 py-1 rounded cursor-pointer"
+          >
             Login
           </Link>
         )}

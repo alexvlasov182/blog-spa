@@ -1,7 +1,14 @@
+import postImg from '../assets/5.svg'
+
 export const Admin = () => (
   <div className="flex items-center justify-center min-h-screen bg-gray-100">
-    <div className="w-full max-w-4xl p-10 bg-white rounded-2xl shadow-2xl text-center">
+    <div className="w-full max-w-7xl p-10 bg-white rounded-2xl shadow-2xl text-center">
       <h1 className="text-4xl font-bold mb-6 text-blue-600">Admin Dashboard</h1>
+
+      <div className="flex items-center justify-center">
+        <img src={postImg} />
+      </div>
+
       <p className="text-lg text-gray-700 mb-8">
         Only authenticated users can see this page. Here you can manage your
         content, view analytics, or update posts.
