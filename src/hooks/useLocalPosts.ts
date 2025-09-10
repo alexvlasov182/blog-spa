@@ -11,7 +11,7 @@ export const useLocalPosts = () => {
       return
     }
     context.addPost(title, body)
-    setFlash({ type: 'success', text: '✅ Post created!' })
+    setFlash({ type: 'success', text: 'Post created!' })
   }
 
   const updatePost = (id: number, title: string, body: string) => {
@@ -20,12 +20,12 @@ export const useLocalPosts = () => {
       return
     }
     context.updatePost(id, title, body)
-    setFlash({ type: 'info', text: '✏️ Post updated!' })
+    setFlash({ type: 'info', text: 'Post updated!' })
   }
 
   const deletePost = (id: number) => {
     context.deletePost(id)
-    setFlash({ type: 'error', text: 'Post deleted!' })
+    setFlash({ type: 'info', text: 'Post deleted!' })
   }
 
   return { ...context, addPost, updatePost, deletePost }

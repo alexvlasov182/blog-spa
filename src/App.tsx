@@ -2,9 +2,9 @@ import { BrowserRouter } from 'react-router-dom'
 import { Navbar } from './components/Navbar'
 import { AppRoutes } from './routes/AppRoutes'
 import { AuthProvider } from './context/AuthContext'
-import { FlashMessage } from './components/FlashMessage'
 import { FlashProvider } from './context/FlashContext'
 import { LocalPostsProvider } from './context/LocalPostsContext'
+import { FlashMessage } from './components/FlashMessage'
 
 function App() {
   return (

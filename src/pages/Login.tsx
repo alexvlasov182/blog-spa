@@ -19,16 +19,14 @@ export const Login = () => {
         <p className="text-center text-gray-500 mt-2 mb-8">
           Sign in to continue
         </p>
-
         <button
           onClick={handleLogin}
           className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2.5 px-4 rounded-lg transition duration-200 ease-in-out shadow-md cursor-pointer"
         >
           Login
         </button>
-
         <p className="text-xs text-center text-gray-400 mt-6">
-          © 2025 Blog-SPA. All rights reserved.
+          © 2025 BlogSPA. All rights reserved.
         </p>
       </div>
     </div>

@@ -6,57 +6,54 @@ import {
   useEffect,
 } from 'react'
 
-// Type of post
 export type LocalPost = {
-  isLocal?: boolean
   id: number
   title: string
   body: string
 }
 
-// Context type
 type LocalPostsContextType = {
   localPosts: LocalPost[]
-  addPost: (title: string, body: string) => void
+  addPost: (title: string, body: string) => LocalPost
   updatePost: (id: number, title: string, body: string) => void
   deletePost: (id: number) => void
 }
 
-const STORAGE_KEY = 'myPosts'
+const STORAGE_KEY = 'myPosts_v1'
 
-// Create Contex
 const LocalPostsContext = createContext<LocalPostsContextType | undefined>(
   undefined
 )
 
-// Provider
 export const LocalPostsProvider = ({ children }: { children: ReactNode }) => {
-  const [localPosts, setLocalPosts] = useState<LocalPost[]>([])
+  const [localPosts, setLocalPosts] = useState<LocalPost[]>(() => {
+    const raw = localStorage.getItem(STORAGE_KEY)
+    if (!raw) return []
+    try {
+      return JSON.parse(raw) as LocalPost[]
+    } catch {
+      return []
+    }
+  })
 
   useEffect(() => {
-    const stored = localStorage.getItem(STORAGE_KEY)
-    if (stored) setLocalPosts(JSON.parse(stored))
-  }, [])
-
-  const savePosts = (posts: LocalPost[]) => {
-    setLocalPosts(posts)
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(posts))
-  }
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(localPosts))
+  }, [localPosts])
 
   const addPost = (title: string, body: string) => {
-    const newPost: LocalPost = { id: Date.now(), title, body, isLocal: true }
-    savePosts([newPost, ...localPosts])
+    const newPost: LocalPost = { id: Date.now(), title, body }
+    setLocalPosts((prev) => [newPost, ...prev])
+    return newPost
   }
 
   const updatePost = (id: number, title: string, body: string) => {
-    const updatedPosts = localPosts.map((p) =>
-      p.id === id ? { ...p, title, body } : p
+    setLocalPosts((prev) =>
+      prev.map((p) => (p.id === id ? { ...p, title, body } : p))
     )
-    savePosts(updatedPosts)
   }
 
   const deletePost = (id: number) => {
-    savePosts(localPosts.filter((p) => p.id !== id))
+    setLocalPosts((prev) => prev.filter((p) => p.id !== id))
   }
 
   return (
@@ -68,11 +65,10 @@ export const LocalPostsProvider = ({ children }: { children: ReactNode }) => {
   )
 }
 
-// Export hooks
 // eslint-disable-next-line react-refresh/only-export-components
 export const useLocalPosts = () => {
-  const context = useContext(LocalPostsContext)
-  if (!context)
-    throw new Error('useLocalPosts must be used within LocalPostsProvider')
-  return context
+  const ctx = useContext(LocalPostsContext)
+  if (!ctx)
+    throw new Error('useLocalPosts must be used inside LocalPostsProvider')
+  return ctx
 }

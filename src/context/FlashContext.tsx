@@ -1,21 +1,32 @@
-// context/FlashContext.tsx
 import { createContext, useContext, useState, type ReactNode } from 'react'
 
-type FlashType = 'success' | 'info' | 'error'
-type Flash = { type: FlashType; text: string }
+export type FlashType = 'success' | 'error' | 'info'
 
-type FlashContextType = {
-  flash: Flash | null
-  setFlash: (flash: Flash) => void
+interface FlashMessage {
+  type: FlashType
+  text: string
+}
+
+interface FlashContextType {
+  flash?: FlashMessage
+  setFlash: (message: FlashMessage) => void
+  clearFlash: () => void
 }
 
 const FlashContext = createContext<FlashContextType | undefined>(undefined)
 
 export const FlashProvider = ({ children }: { children: ReactNode }) => {
-  const [flash, setFlash] = useState<Flash | null>(null)
+  const [flash, setFlashState] = useState<FlashMessage | undefined>()
+
+  const setFlash = (message: FlashMessage) => {
+    setFlashState(message)
+    setTimeout(() => setFlashState(undefined), 3000)
+  }
+
+  const clearFlash = () => setFlashState(undefined)
 
   return (
-    <FlashContext.Provider value={{ flash, setFlash }}>
+    <FlashContext.Provider value={{ flash, setFlash, clearFlash }}>
       {children}
     </FlashContext.Provider>
   )

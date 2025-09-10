@@ -1,17 +1,10 @@
-type CommentCardProps = {
-  postId: number
-  id: number
-  name: string
-  email: string
-  body: string
-}
+import type { Comment } from '../hooks/useFetchComments'
 
-export const CommentCard = ({ name, email, body }: CommentCardProps) => {
-  return (
-    <div className="border rounded-lg p-4 shadow-sm bg-gray-50">
-      <h3 className="font-semibold text-lg">{name}</h3>
-      <p className="text-sm text-gray-500 mb-2">{email}</p>
-      <p className="text-gray-700">{body}</p>
-    </div>
-  )
-}
+export const CommentCard = ({ name, email, body }: Comment) => (
+  <div className="p-4 bg-gray-100 rounded-lg">
+    <p className="font-semibold">
+      {name} <span className="text-gray-500 text-sm">({email})</span>
+    </p>
+    <p className="text-gray-700">{body}</p>
+  </div>
+)

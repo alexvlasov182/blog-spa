@@ -1,7 +1,7 @@
 import { useFetchComments } from '../hooks/useFetchComments'
 import { CommentCard } from '../components/CommentCard'
 
-type CommentListProps = {
+interface CommentListProps {
   postId: number
 }
 

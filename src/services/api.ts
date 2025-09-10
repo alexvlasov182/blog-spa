@@ -1,35 +1,25 @@
 export interface Post {
   id: number
   title: string
-  excerpt: string
-  content: string
+  body: string
 }
 
-const posts: Post[] = [
-  {
-    id: 1,
-    title: 'React Router v6 Guide',
-    excerpt: 'Learn nested routes.',
-    content: 'Full article content...',
-  },
-  {
-    id: 2,
-    title: 'Clean Architecture',
-    excerpt: 'Organize your React projects.',
-    content: 'Full article content...',
-  },
-  {
-    id: 3,
-    title: 'Tailwind Tips',
-    excerpt: 'Make your UI beautiful.',
-    content: 'Full article content...',
-  },
-]
+const API_URL = 'https://jsonplaceholder.typicode.com'
 
-export const fetchPosts = (): Promise<Post[]> =>
-  new Promise((resolve) => setTimeout(() => resolve(posts), 500))
+export const fetchPosts = async (): Promise<Post[]> => {
+  const res = await fetch(`${API_URL}/posts?_limit=20`)
+  if (!res.ok) throw new Error('Failed to fetch posts')
+  return res.json()
+}
 
-export const fetchPostById = (id: number): Promise<Post | undefined> =>
-  new Promise((resolve) =>
-    setTimeout(() => resolve(posts.find((p) => p.id === id)), 500)
-  )
+export const fetchPostById = async (id: number): Promise<Post> => {
+  const res = await fetch(`${API_URL}/posts/${id}`)
+  if (!res.ok) throw new Error('Post not found')
+  return res.json()
+}
+
+export const fetchComments = async (postId: number) => {
+  const res = await fetch(`${API_URL}/posts/${postId}/comments`)
+  if (!res.ok) throw new Error('Failed to fetch comments')
+  return res.json()
+}

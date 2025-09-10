@@ -1,31 +1,15 @@
-import { useState, useEffect } from 'react'
-
-type Post = {
-  id: number
-  title: string
-  body: string
-  excerpt: string
-}
+import { useEffect, useState } from 'react'
+import { fetchPosts, fetchPostById, type Post } from '../services/api'
 
 export const useFetchPosts = () => {
   const [posts, setPosts] = useState<Post[]>([])
-  const [loading, setLoading] = useState<boolean>(true)
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    const fetchPosts = async () => {
-      try {
-        const res = await fetch(
-          'https://jsonplaceholder.typicode.com/posts?_limit=20'
-        )
-        const data = await res.json()
-        setPosts(data)
-      } catch (error) {
-        console.log('Error fetching posts:', error)
-      } finally {
-        setLoading(false)
-      }
-    }
     fetchPosts()
+      .then(setPosts)
+      .catch(console.error)
+      .finally(() => setLoading(false))
   }, [])
 
   return { posts, loading }
@@ -33,24 +17,13 @@ export const useFetchPosts = () => {
 
 export const useFetchPost = (id: number) => {
   const [post, setPost] = useState<Post | null>(null)
-  const [loading, setLoading] = useState<boolean>(true)
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    const fetchPost = async () => {
-      try {
-        const res = await fetch(
-          `https://jsonplaceholder.typicode.com/posts/${id}`
-        )
-        if (!res.ok) throw new Error('Post not found')
-        const data = await res.json()
-        setPost(data)
-      } catch (error) {
-        console.error(error)
-      } finally {
-        setLoading(false)
-      }
-    }
-    fetchPost()
+    fetchPostById(id)
+      .then(setPost)
+      .catch(console.error)
+      .finally(() => setLoading(false))
   }, [id])
 
   return { post, loading }

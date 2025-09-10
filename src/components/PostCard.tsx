@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 
-type PostCardProps = {
+type Props = {
   id: number
   title: string
   excerpt: string
@@ -13,31 +13,42 @@ export const PostCard = ({
   id,
   title,
   excerpt,
+  isLocal,
   onEdit,
   onDelete,
-}: PostCardProps) => {
+}: Props) => {
+  const handleDelete = () => {
+    if (!onDelete) return
+    const ok = confirm('Are you sure you want to delete this post?')
+    if (ok) onDelete()
+  }
+
   return (
-    <div className="border rounded-lg p-4 shadow hover:shadow-lg transition">
-      <h2 className="text-xl font-bold">{title}</h2>
-      <p className="mt-2">{excerpt}</p>
-      <Link to={`/blog/${id}`} className="text-blue-600 mt-2 inline-block">
+    <div className="p-6 bg-white rounded-lg shadow hover:shadow-lg transition relative">
+      <h2 className="font-bold text-xl mb-2">{title}</h2>
+      <p className="text-gray-600 mb-4">{excerpt}</p>
+      <Link to={`/blog/${id}`} className="text-blue-600 hover:underline">
         Read more
       </Link>
 
-      {onEdit && onDelete && (
-        <div className="flex gap-2 mt-4">
-          <button
-            onClick={onEdit}
-            className="px-3 py-1 bg-yellow-500 text-white rounded cursor-pointer"
-          >
-            Edit
-          </button>
-          <button
-            onClick={onDelete}
-            className="px-3 py-1 bg-red-500 text-white rounded cursor-pointer"
-          >
-            Delete
-          </button>
+      {isLocal && (
+        <div className="absolute top-3 right-3 flex gap-2">
+          {onEdit && (
+            <button
+              onClick={onEdit}
+              className="text-yellow-500 hover:text-yellow-600"
+            >
+              Edit
+            </button>
+          )}
+          {onDelete && (
+            <button
+              onClick={handleDelete}
+              className="text-red-500 hover:text-red-600"
+            >
+              Delete
+            </button>
+          )}
         </div>
       )}
     </div>
