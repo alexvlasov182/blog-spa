@@ -3,7 +3,7 @@ import adminImg from '../assets/5.svg'
 export const Admin = () => (
   <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50 p-10">
     <h1 className="text-4xl font-bold mb-6 ">Admin Dashboard</h1>
-    <img src={adminImg} alt="Admin" className="mb-8 w-80" />
+    <img src={adminImg} alt="Admin" className="rounded-lg shadow mb-8 w-80" />
     <p className="text-gray-700 mb-8 text-center">
       Only authenticated users can see this page. Manage posts, view analytics,
       or update settings.

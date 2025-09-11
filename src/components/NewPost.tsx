@@ -13,12 +13,16 @@ export const NewPostForm = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    if (!title.trim() || !body.trim()) {
-      setFlash({ type: 'error', text: 'Title and body cannot be empty' })
+    if (!title.trim() || title.trim().length < 3) {
+      setFlash({ type: 'error', text: 'Title must be at least 3 characters' })
+      return
+    }
+    if (!body.trim() || body.trim().length < 10) {
+      setFlash({ type: 'error', text: 'Body must be at least 10 characters' })
       return
     }
     addPost(title, body)
-    setFlash({ type: 'success', text: '✅ Post created!' })
+    setFlash({ type: 'success', text: 'Post created!' })
     navigate('/blog')
   }
 

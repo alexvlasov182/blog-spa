@@ -25,7 +25,7 @@ export const useLocalPosts = () => {
 
   const deletePost = (id: number) => {
     context.deletePost(id)
-    setFlash({ type: 'info', text: 'Post deleted!' })
+    setFlash({ type: 'error', text: 'Post deleted!' })
   }
 
   return { ...context, addPost, updatePost, deletePost }

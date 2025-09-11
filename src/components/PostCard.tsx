@@ -1,4 +1,6 @@
 import { Link } from 'react-router-dom'
+import { useState } from 'react'
+import { Dialog } from '@headlessui/react'
 
 type Props = {
   id: number
@@ -17,10 +19,11 @@ export const PostCard = ({
   onEdit,
   onDelete,
 }: Props) => {
-  const handleDelete = () => {
-    if (!onDelete) return
-    const ok = confirm('Are you sure you want to delete this post?')
-    if (ok) onDelete()
+  const [isDialogOpen, setIsDialogOpen] = useState(false)
+
+  const handleConfirmDelete = () => {
+    if (onDelete) onDelete()
+    setIsDialogOpen(false)
   }
 
   return (
@@ -36,21 +39,53 @@ export const PostCard = ({
           {onEdit && (
             <button
               onClick={onEdit}
-              className="text-yellow-500 hover:text-yellow-600"
+              className="text-yellow-500 hover:text-yellow-600 cursor-pointer"
             >
               Edit
             </button>
           )}
           {onDelete && (
             <button
-              onClick={handleDelete}
-              className="text-red-500 hover:text-red-600"
+              onClick={() => setIsDialogOpen(true)}
+              className="text-red-500 hover:text-red-600 cursor-pointer"
             >
               Delete
             </button>
           )}
         </div>
       )}
+
+      <Dialog
+        open={isDialogOpen}
+        onClose={() => setIsDialogOpen(false)}
+        className="fixed inset-0 z-50 flex items-center justify-center"
+      >
+        <div className="fixed inset-0 bg-black/30" aria-hidden="true" />
+
+        <Dialog.Panel className="relative bg-white p-6 rounded shadow-lg w-full max-w-sm z-50">
+          <Dialog.Title className="text-lg font-bold">
+            Delete Post?
+          </Dialog.Title>
+          <Dialog.Description className="mt-2 text-gray-600">
+            Are you sure you want to delete this post? This action cannot be
+            undone.
+          </Dialog.Description>
+          <div className="mt-4 flex justify-end gap-2">
+            <button
+              onClick={() => setIsDialogOpen(false)}
+              className="px-4 py-2 border rounded"
+            >
+              Cancel
+            </button>
+            <button
+              onClick={handleConfirmDelete}
+              className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+            >
+              Delete
+            </button>
+          </div>
+        </Dialog.Panel>
+      </Dialog>
     </div>
   )
 }
