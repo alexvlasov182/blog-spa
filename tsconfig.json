@@ -1,18 +1,17 @@
 {
   "compilerOptions": {
-    "target": "ESNext",
-    "module": "ESNext",
     "jsx": "react-jsx",
-    "strict": true,
-    "moduleResolution": "node",
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "forceConsistentCasingInFileNames": true,
     "baseUrl": "./src",
-    "paths": {
-      "@/*": ["*"]
-    },
-    "types": ["jest", "node"]
+    "allowJs": true,
+    "esModuleInterop": true,
+    "types": ["node", "jest"],
+    "moduleResolution": "bundler",
+    "module": "esnext",
+    "target": "esnext",
+    "paths": { "@/*": ["*"] },
+    "outDir": "dist",
+    "noEmitOnError": true
   },
-  "include": ["src"]
+  "include": ["src"],
+  "exclude": ["node_modules", "**/__mocks__/*", "**/*.config.*", "dist"]
 }
