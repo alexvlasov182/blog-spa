@@ -54,13 +54,13 @@ export const EditPost = () => {
         className="w-full border rounded p-2"
       />
       <div className="flex gap-2">
-        <button className="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600">
+        <button className="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600 cursor-pointer">
           Save
         </button>
         <button
           type="button"
           onClick={() => navigate('/blog')}
-          className="bg-gray-200 px-4 py-2 rounded"
+          className="bg-gray-200 hover:bg-gray-300  px-4 py-2 rounded cursor-pointer"
         >
           Cancel
         </button>
