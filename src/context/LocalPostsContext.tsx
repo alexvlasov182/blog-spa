@@ -4,6 +4,7 @@ import {
   useContext,
   useState,
   useEffect,
+  useCallback,
 } from 'react'
 
 export type LocalPost = {
@@ -40,21 +41,21 @@ export const LocalPostsProvider = ({ children }: { children: ReactNode }) => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(localPosts))
   }, [localPosts])
 
-  const addPost = (title: string, body: string) => {
+  const addPost = useCallback((title: string, body: string) => {
     const newPost: LocalPost = { id: Date.now(), title, body }
     setLocalPosts((prev) => [newPost, ...prev])
     return newPost
-  }
+  }, [])
 
-  const updatePost = (id: number, title: string, body: string) => {
+  const updatePost = useCallback((id: number, title: string, body: string) => {
     setLocalPosts((prev) =>
       prev.map((p) => (p.id === id ? { ...p, title, body } : p))
     )
-  }
+  }, [])
 
-  const deletePost = (id: number) => {
+  const deletePost = useCallback((id: number) => {
     setLocalPosts((prev) => prev.filter((p) => p.id !== id))
-  }
+  }, [])
 
   return (
     <LocalPostsContext.Provider

@@ -1,21 +1,18 @@
 {
-  "files": [],
-  "references": [
-    {
-      "path": "./tsconfig.app.json"
-    },
-    {
-      "path": "./tsconfig.node.json"
-    }
-  ],
   "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
     "jsx": "react-jsx",
-    "baseUrl": "./src",
-    "allowJs": true,
+    "strict": true,
+    "moduleResolution": "node",
     "esModuleInterop": true,
-    "types": ["jest", "node"],
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "baseUrl": "./src",
     "paths": {
       "@/*": ["*"]
-    }
-  }
+    },
+    "types": ["jest", "node"]
+  },
+  "include": ["src"]
 }

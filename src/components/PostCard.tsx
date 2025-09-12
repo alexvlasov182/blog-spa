@@ -73,13 +73,13 @@ export const PostCard = ({
           <div className="mt-4 flex justify-end gap-2">
             <button
               onClick={() => setIsDialogOpen(false)}
-              className="px-4 py-2 border rounded"
+              className="px-4 py-2 border rounded cursor-pointer"
             >
               Cancel
             </button>
             <button
               onClick={handleConfirmDelete}
-              className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+              className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 cursor-pointer"
             >
               Delete
             </button>

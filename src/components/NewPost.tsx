@@ -44,7 +44,7 @@ export const NewPostForm = () => {
         placeholder="Write your post..."
         className="w-full border rounded p-2"
       />
-      <button className="bg-blue-600 text-white px-4 py-2 rounded">
+      <button className="bg-blue-600 text-white px-4 py-2 rounded cursor-pointer">
         Add Post
       </button>
     </form>
